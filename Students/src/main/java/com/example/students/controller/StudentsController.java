@@ -27,12 +27,14 @@ public class StudentsController {
 	@Autowired
 	private StudentsService studentservice;
 
+	//create student
 	@PostMapping("/create")
 	public ResponseEntity<StudentsDTO> createStudent(@Valid @RequestBody StudentsDTO student) {
 		StudentsDTO newstudent = this.studentservice.createStudent(student);
 		return new ResponseEntity<>(newstudent, HttpStatus.CREATED);
 	}
 
+	//update student
 	@PutMapping("/updatestudent/{id}")
 	public ResponseEntity<StudentsDTO> updateStudent(@Valid @RequestBody StudentsDTO student,
 			@PathVariable Integer id) {
@@ -40,17 +42,20 @@ public class StudentsController {
 		return ResponseEntity.ok(updatedstudent);
 	}
 
+	//get student by id 
 	@GetMapping("/getstudentbyid/{id}")
 	public ResponseEntity<StudentsDTO> getStudentById(@PathVariable Integer id) {
 		StudentsDTO getStudent = this.studentservice.getStudentById(id);
 		return ResponseEntity.ok(getStudent);
 	}
 
+	//get all students
 	@GetMapping("/allstudents")
 	public ResponseEntity<List<StudentsDTO>> getAllStudents() {
 		return ResponseEntity.ok(this.studentservice.getAllStudents());
 	}
 
+	//delete student
 	@DeleteMapping("/deletestudent/{id}")
 	public ResponseEntity<ApiResponse> delete(@PathVariable Integer id) {
          this.studentservice.deleteStudent(id);

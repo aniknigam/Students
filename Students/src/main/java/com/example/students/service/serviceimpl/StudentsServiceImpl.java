@@ -24,6 +24,7 @@ public class StudentsServiceImpl implements StudentsService {
     @Autowired
     private ModelMapper modelMapper;
 
+    //logic for creating student
 	@Override
 	public StudentsDTO createStudent(StudentsDTO student) {
 		Students newstudent =  this.modelMapper.map(student, Students.class);
@@ -32,6 +33,7 @@ public class StudentsServiceImpl implements StudentsService {
 		return studentdto;
 	}
 
+	//logic for updating student 
 	@Override
 	public StudentsDTO updateStudent(StudentsDTO student, Integer id) {
 		 Students updateStudent = this.studentsrepo.findById(id)
@@ -46,6 +48,7 @@ public class StudentsServiceImpl implements StudentsService {
 		return studentdto;
 	}
 
+	//logic for getting student by id
 	@Override
 	public StudentsDTO getStudentById(Integer id) {
 		 Students student = this.studentsrepo.findById(id)
@@ -55,6 +58,7 @@ public class StudentsServiceImpl implements StudentsService {
 		return studentdto;
 	}
 
+	// logic for getting all students
 	@Override
 	public List<StudentsDTO> getAllStudents() {
 		List<Students> allstudents = this.studentsrepo.findAll();
@@ -64,6 +68,7 @@ public class StudentsServiceImpl implements StudentsService {
 		return allstudentsdto;
 	}
 
+	//delete logic
 	@Override
 	public void deleteStudent(Integer id) {
 		 Students student = this.studentsrepo.findById(id)
